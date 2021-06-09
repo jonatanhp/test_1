@@ -33,7 +33,8 @@ class SeccionController extends BaseController
         $input = $request->all();
    
         $validator = Validator::make($input, [
-            'nom_seccion' => 'required'
+            'nom_seccion' => 'required',
+            'grado_id1' => 'required'
             
         ]);
    
@@ -75,8 +76,9 @@ class SeccionController extends BaseController
         $input = $request->all();
    
         $validator = Validator::make($input, [
-            'nom_seccion' => 'required'
-            
+            'nom_seccion' => 'required',
+            'desc_seccion',
+            'grado_id1' => 'required'
         ]);
    
         if($validator->fails()){
@@ -84,7 +86,8 @@ class SeccionController extends BaseController
         }
    
         $seccion->nom_seccion = $input['nom_seccion'];
-        
+        $seccion->desc_seccion = $input['desc_seccion'];
+        $seccion->grado_id1 = $input['grado_id1'];
         $seccion->save();
    
         return $this->sendResponse(new SeccionResource($seccion), 'Seccion updated successfully.');
