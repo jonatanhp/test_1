@@ -24,8 +24,27 @@ class User extends Authenticatable
         'ap_mat',
         'sexo',
         'dni',
+        'fecha_nac',
+        'telefono',
+        'ubigeo_id',
         'password',
     ];
+
+    public function ubigeo(){
+        return $this->belongsTo('App\Models\Ubigeo');
+    }
+
+    public function docentes(){
+        return $this->hasMany('App\Models\Docente');
+    }
+
+    public function alumnos(){
+        return $this->hasMany('App\Models\Alumno');
+    }
+
+    public function representantes(){
+        return $this->hasMany('App\Models\Representante');
+    }
 
     /**
      * The attributes that should be hidden for arrays.

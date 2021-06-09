@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Seccion extends Model
+class Docente extends Model
 {
     use HasFactory;
+
     protected $fillable=[
-        'nom_seccion',
-        'desc_seccion',
-        'grado_id1'
+        'cod_docente'
     ];
 
-    protected $table='seccion';
+    protected $table='docente';
 
-    public function grado(){
-        return $this->belongsTo('App\Models\Grado');
+    public function user(){
+        return $this->belongsTo('App\Models\User');
     }
 
     public function curso_docente_secciones(){
