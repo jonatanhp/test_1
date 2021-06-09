@@ -46,6 +46,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Representante');
     }
 
+    public function rol_users(){
+        return $this->hasMany('App\Models\Rol_User');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

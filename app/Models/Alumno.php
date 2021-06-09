@@ -10,7 +10,8 @@ class Alumno extends Model
     use HasFactory;
 
     protected $fillable=[
-        'cod_alumno'
+        'cod_alumno',
+        'user_id'
     ];
 
     protected $table='alumno';

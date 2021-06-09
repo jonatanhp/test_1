@@ -11,7 +11,8 @@ class Rol extends Model
 
     protected $fillable=[
         'nom_rol',
-        'desc_rol'
+        'desc_rol',
+        'permisos_id'
     ];
 
     protected $table='rol';

@@ -10,7 +10,8 @@ class Docente extends Model
     use HasFactory;
 
     protected $fillable=[
-        'cod_docente'
+        'cod_docente',
+        'user_id'
     ];
 
     protected $table='docente';
