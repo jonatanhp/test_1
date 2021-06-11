@@ -51,6 +51,7 @@ class NivelController extends BaseController
         $nivel = Nivel::create($input);
    
         return $this->sendResponse(new NivelResource($nivel), 'Nivel created successfully.');
+        echo "nivel creado";
     } 
    
     /**
@@ -88,10 +89,10 @@ class NivelController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nivel $nivel)
+    public function update(Request $request, $id)
     {
         $input = $request->all();
-   
+        $nivel=Nivel::findOrFail($id);
         $validator = Validator::make($input, [
             'nom_nivel' => 'required',
             'desc_nivel' => 'required'
@@ -114,8 +115,9 @@ class NivelController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Nivel $nivel)
-    {
+    public function destroy($id)
+    {   
+        $nivel=Nivel::findOrFail($id);
         $nivel->delete();
    
         return $this->sendResponse([], 'Nivel deleted successfully.');
