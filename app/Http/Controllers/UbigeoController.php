@@ -73,8 +73,9 @@ class UbigeoController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ubigeo $ubigeo)
+    public function update(Request $request, $id)
     {
+        $ubigeo=Ubigeo::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -103,8 +104,9 @@ class UbigeoController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ubigeo $ubigeo)
+    public function destroy($id)
     {
+        $ubigeo=Ubigeo::findOrFail($id);
         $ubigeo->delete();
    
         return $this->sendResponse([], 'Ubigeo deleted successfully.');

@@ -74,8 +74,9 @@ class ContratoMatriculaController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contrato_Matricula $contrato_matricula)
+    public function update(Request $request, $id)
     {
+        $contrato_matricula=Contrato_Matricula::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -106,8 +107,9 @@ class ContratoMatriculaController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contrato_Matricula $contrato_matricula)
+    public function destroy($id)
     {
+        $contrato_matricula=Contrato_Matricula::findOrFail($id);
         $contrato_matricula->delete();
    
         return $this->sendResponse([], 'Contrato_Matricula deleted successfully.');

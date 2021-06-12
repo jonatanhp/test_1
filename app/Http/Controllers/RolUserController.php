@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Rol_User;
 use App\Http\Controllers\BaseController as BaseController;
+use App\Http\Resources\Rol;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\Rol_User as Rol_UserResource;
 
@@ -71,8 +72,9 @@ class RolUserController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rol_User $rol_user)
+    public function update(Request $request, $id)
     {
+        $rol_user=Rol_User::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -97,8 +99,9 @@ class RolUserController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rol_User $rol_user)
+    public function destroy($id)
     {
+        $rol_user=Rol_User::findOrFail($id);
         $rol_user->delete();
    
         return $this->sendResponse([], 'Rol_User deleted successfully.');

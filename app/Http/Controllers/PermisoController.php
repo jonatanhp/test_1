@@ -73,8 +73,9 @@ class PermisoController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permiso $permiso)
+    public function update(Request $request, $id)
     {
+        $permiso=Permiso::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -101,8 +102,9 @@ class PermisoController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permiso $permiso)
+    public function destroy($id)
     {
+        $permiso=Permiso::findOrFail($id);
         $permiso->delete();
    
         return $this->sendResponse([], 'Permiso deleted successfully.');

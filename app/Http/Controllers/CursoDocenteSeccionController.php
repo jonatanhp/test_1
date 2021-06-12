@@ -8,7 +8,7 @@ use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\Curso_Docente_Seccion as Curso_Docente_SeccionResource;
 
-class CursoDocenteSeccionController extends Controller
+class CursoDocenteSeccionController extends BaseController
 {
      /**
      * Display a listing of the resource.
@@ -73,8 +73,9 @@ class CursoDocenteSeccionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Curso_Docente_Seccion $curso_docente_seccion)
+    public function update(Request $request, $id)
     {
+        $curso_docente_seccion=Curso_Docente_Seccion::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -106,8 +107,9 @@ class CursoDocenteSeccionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Curso_Docente_Seccion $curso_docente_seccion)
+    public function destroy($id)
     {
+        $curso_docente_seccion=Curso_Docente_Seccion::findOrFail($id);
         $curso_docente_seccion->delete();
    
         return $this->sendResponse([], 'Curso_Docente_Seccion deleted successfully.');

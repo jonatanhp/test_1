@@ -72,8 +72,9 @@ class CobranzaController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cobranza $cobranza)
+    public function update(Request $request, $id)
     {
+        $cobranza=Cobranza::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -105,8 +106,9 @@ class CobranzaController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cobranza $cobranza)
+    public function destroy($id)
     {
+        $cobranza=Cobranza::findOrFail($id);
         $cobranza->delete();
    
         return $this->sendResponse([], 'Cobranza deleted successfully.');

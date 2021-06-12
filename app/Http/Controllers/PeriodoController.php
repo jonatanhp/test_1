@@ -71,8 +71,9 @@ class PeriodoController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Periodo $periodo)
+    public function update(Request $request, $id)
     {
+        $periodo=Periodo::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -100,8 +101,9 @@ class PeriodoController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Periodo $periodo)
+    public function destroy($id)
     {
+        $periodo=Periodo::findOrFail($id);
         $periodo->delete();
    
         return $this->sendResponse([], 'Periodo deleted successfully.');

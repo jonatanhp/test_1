@@ -71,8 +71,9 @@ class DepositoController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Deposito $deposito)
+    public function update(Request $request, $id)
     {
+        $deposito=Deposito::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -102,8 +103,9 @@ class DepositoController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Deposito $deposito)
+    public function destroy($id)
     {
+        $deposito=Deposito::findOrFail($id);
         $deposito->delete();
    
         return $this->sendResponse([], 'Deposito deleted successfully.');

@@ -72,8 +72,9 @@ class AreaController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Area $area)
+    public function update(Request $request, $id)
     {
+        $area=Area::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -98,8 +99,9 @@ class AreaController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Area $area)
+    public function destroy($id)
     {
+        $area=Area::findOrFail($id);
         $area->delete();
    
         return $this->sendResponse([], 'Area deleted successfully.');

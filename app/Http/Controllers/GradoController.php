@@ -91,8 +91,9 @@ class GradoController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Grado $grado)
+    public function update(Request $request, $id)
     {
+        $grado=Grado::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -119,8 +120,9 @@ class GradoController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Grado $grado)
+    public function destroy($id)
     {
+        $grado=Grado::findOrFail($id);
         $grado->delete();
    
         return $this->sendResponse([], 'Grado deleted successfully.');

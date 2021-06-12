@@ -70,8 +70,9 @@ class AlumnoController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Alumno $alumno)
+    public function update(Request $request, $id)
     {
+        $alumno=Alumno::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -98,8 +99,9 @@ class AlumnoController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alumno $alumno)
+    public function destroy($id)
     {
+        $alumno=Alumno::findOrFail($id);
         $alumno->delete();
    
         return $this->sendResponse([], 'Alumno deleted successfully.');

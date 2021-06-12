@@ -71,8 +71,9 @@ class RolController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rol $rol)
+    public function update(Request $request, $id)
     {
+        $rol=Rol::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -99,8 +100,9 @@ class RolController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rol $rol)
+    public function destroy($id)
     {
+        $rol=Rol::findOrFail($id);
         $rol->delete();
    
         return $this->sendResponse([], 'Rol deleted successfully.');

@@ -70,8 +70,9 @@ class RepresentanteController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Representante $representante)
+    public function update(Request $request, $id)
     {
+        $representante=Representante::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -98,8 +99,9 @@ class RepresentanteController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Representante $representante)
+    public function destroy($id)
     {
+        $representante=Representante::findOrFail($id);
         $representante->delete();
    
         return $this->sendResponse([], 'Representante deleted successfully.');

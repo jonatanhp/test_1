@@ -74,8 +74,9 @@ class CursoController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Curso $curso)
+    public function update(Request $request, $id)
     {
+        $curso=Curso::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -110,8 +111,9 @@ class CursoController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Curso $curso)
+    public function destroy($id)
     {
+        $curso=Curso::findOrFail($id);
         $curso->delete();
    
         return $this->sendResponse([], 'Curso deleted successfully.');

@@ -70,8 +70,9 @@ class DocenteController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Docente $docente)
+    public function update(Request $request, $id)
     {
+        $docente=Docente::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -98,8 +99,9 @@ class DocenteController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Docente $docente)
+    public function destroy($id)
     {
+        $docente=Docente::findOrFail($id);
         $docente->delete();
    
         return $this->sendResponse([], 'Docente deleted successfully.');

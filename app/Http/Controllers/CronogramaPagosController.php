@@ -72,8 +72,9 @@ class CronogramaPagosController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cronograma_Pagos $cronograma_pagos)
+    public function update(Request $request, $id)
     {
+        $cronograma_pagos=Cronograma_Pagos::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -100,8 +101,9 @@ class CronogramaPagosController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cronograma_Pagos $cronograma_pagos)
+    public function destroy($id)
     {
+        $cronograma_pagos=Cronograma_Pagos::findOrFail($id);
         $cronograma_pagos->delete();
    
         return $this->sendResponse([], 'Cronograma_Pagos deleted successfully.');

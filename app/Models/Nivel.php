@@ -10,7 +10,7 @@ class Nivel extends Model
     use HasFactory;
 
     protected $fillable=[
-        'id',
+        
         'nom_nivel',
         'desc_nivel'
     ];

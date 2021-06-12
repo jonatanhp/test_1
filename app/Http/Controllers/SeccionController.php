@@ -34,6 +34,7 @@ class SeccionController extends BaseController
    
         $validator = Validator::make($input, [
             'nom_seccion' => 'required',
+            'desc_seccion',
             'grado_id1' => 'required'
             
         ]);
@@ -71,8 +72,9 @@ class SeccionController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Seccion $seccion)
+    public function update(Request $request, $id)
     {
+        $seccion=Seccion::findOrFail($id);
         $input = $request->all();
    
         $validator = Validator::make($input, [
@@ -99,8 +101,9 @@ class SeccionController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Seccion $seccion)
+    public function destroy($id)
     {
+        $seccion=Seccion::findOrFail($id);
         $seccion->delete();
    
         return $this->sendResponse([], 'Seccion deleted successfully.');

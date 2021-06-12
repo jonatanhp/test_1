@@ -72,10 +72,11 @@ class AlumnoCargaAcadController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Alumno_Carga_Acad $alumno_carga_acad)
+    public function update(Request $request, $id)
     {
+        $alumno_carga_acad=Alumno_Carga_Acad::findOrFail($id);
         $input = $request->all();
-   
+        
         $validator = Validator::make($input, [
             'curso_docente_seccion_id' => 'required',
             'contrato_matricula_id' => 'required',
@@ -100,8 +101,9 @@ class AlumnoCargaAcadController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alumno_Carga_Acad $alumno_carga_acad)
+    public function destroy($id)
     {
+        $alumno_carga_acad=Alumno_Carga_Acad::findOrFail($id);
         $alumno_carga_acad->delete();
    
         return $this->sendResponse([], 'Alumno_Carga_Acad deleted successfully.');
