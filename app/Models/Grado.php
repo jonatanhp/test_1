@@ -12,7 +12,7 @@ class Grado extends Model
     protected $fillable=[
         'nom_grado',
         'desc_grado',
-        'nivel_id1'
+        'nivel_id'
     ];
 
     protected $table='grado';

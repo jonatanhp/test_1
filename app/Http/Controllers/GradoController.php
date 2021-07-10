@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Grado;
+use App\Models\Nivel;
 use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\Grado as GradoResource;
+use App\Http\Resources\Nivel as NivelResource;
 
 class GradoController extends BaseController
 {
@@ -15,8 +17,14 @@ class GradoController extends BaseController
     public function index()
     {
         $grados = Grado::all();
-    
+        //$niveles=new Nivel;
+        $niveles=GradoController::preloadNivel();
+        $nivel1=new Nivel;
+        $nivel2=$nivel1::all();
+        //$niveles->preloadNivel();
         return $this->sendResponse(GradoResource::collection($grados), 'Grados retrieved successfully.');
+        //return $this->sendResponse(NivelResource::collection($niveles), 'Gos retrieved successfully.');
+        //return array ( $grados, $nivel2);
     }
     
 
@@ -40,11 +48,13 @@ class GradoController extends BaseController
     public function store(Request $request)
     {
         $input = $request->all();
-   
+        $niveles=GradoController::preloadNivel();
+        //$niveles->preloadNivel();
+
         $validator = Validator::make($input, [
             'nom_grado' => 'required',
             'desc_grado' => 'required',
-            'nivel_id1' => 'required'
+            'nivel_id' => 'required'
         ]);
    
         if($validator->fails()){
@@ -55,6 +65,14 @@ class GradoController extends BaseController
    
         return $this->sendResponse(new GradoResource($grado), 'Grado created successfully.');
     } 
+
+     static public  function preloadNivel (){
+        $niveles = Nivel::all();
+        //return $this->sendResponse(new NivelResource($niveles), 'Grado created successfully.');
+        return ($niveles);
+    }
+
+    
    
     /**
      * Display the specified resource.
