@@ -9,6 +9,8 @@ use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\Nivel as NivelResource;
 use App\Http\Resources\Grado as GradoResource;
+use App\Http\Data\NivelData;
+use Exception;
 
 class NivelController extends BaseController
 {
@@ -144,6 +146,17 @@ class NivelController extends BaseController
         $nivel->delete();
    
         return $this->sendResponse([], 'Nivel deleted successfully.');
+    }
+
+    public function getGrados(Request $request, $nivel_id)
+    {
+        $jResponse = [];
+        try{
+            $jResponse = NivelData::getGrados($nivel_id);
+        }catch(Exception $e){
+           return $this->errorResponse($e->getMessage(), 400);
+        }
+        return $this->sendResponse($jResponse, 201);
     }
     
 }

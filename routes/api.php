@@ -51,6 +51,7 @@ Route::middleware('auth:api')->group( function () {
     Route::resource('docentes', DocenteController::class);
     Route::resource('grados', GradoController::class);
     Route::resource('niveles', NivelController::class);
+    Route::get('niveles/{id}/grados', [NivelController::class, 'getGrados']);
     Route::resource('periodos', PeriodoController::class);
     Route::resource('permisos', PermisoController::class);
     Route::resource('representantes', RepresentanteController::class);
