@@ -50,6 +50,7 @@ Route::middleware('auth:api')->group( function () {
     Route::resource('depositos', DepositoController::class);
     Route::resource('docentes', DocenteController::class);
     Route::resource('grados', GradoController::class);
+    Route::get('grados/{id}/nivel', [GradoController::class, 'getNivel']);
     Route::resource('niveles', NivelController::class);
     Route::get('niveles/{id}/grados', [NivelController::class, 'getGrados']);
     Route::resource('periodos', PeriodoController::class);
@@ -58,6 +59,9 @@ Route::middleware('auth:api')->group( function () {
     Route::resource('roles', RolController::class);
     Route::resource('rol_users', RolUserController::class);
     Route::resource('secciones', SeccionController::class);
+    Route::get('secciones/{id}/grado&nivel', [SeccionController::class, 'getGradoandNivel']);
     Route::resource('ubigeos', UbigeoController::class);
     
 });
+
+//getGradoandNivel

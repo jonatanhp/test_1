@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
 
 trait ApiResponser
 {
-    function successResponse($data, $code) {
+    /*function successResponse($data, $code) {
         // return $data->response()->setStatusCode($code);
         return response()->json(['data' => $data], $code);
     }
@@ -63,6 +63,6 @@ trait ApiResponser
         $perPage = request()->validate($rules);
         return isset($perPage['per_page']) ? (int) $perPage['per_page'] : 5;
     }
-
+*/
 
 }

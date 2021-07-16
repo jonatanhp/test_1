@@ -1,59 +1,13 @@
 <?php
 
-
-namespace App\Http\Controllers;
-
-
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
-use App\Http\Controllers\Controller as Controller;
+namespace App\Traits;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 
-class BaseController extends Controller
-{
-    /**
-     * success response method.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function sendResponse($result, $message)
-    {
-    	$response = [
-            'success' => true,
-            'data'    => $result,
-            'message' => $message,
-        ];
+class ResponserTest  {
 
-
-        return response()->json($response, 200);
-    }
-
-
-    /**
-     * return error response.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function sendError($error, $errorMessages = [], $code = 404)
-    {
-    	$response = [
-            'success' => false,
-            'message' => $error,
-        ];
-
-
-        if(!empty($errorMessages)){
-            $response['data'] = $errorMessages;
-        }
-
-
-        return response()->json($response, $code);
-    }
-
-
-    public function showAlls($collection, $code = 200) {
+     public function showAlls($collection, $code = 200) {
         if ($collection->isEmpty()) {
             return $this->successResponse(['data' => $collection], $code);
         }
@@ -91,5 +45,7 @@ class BaseController extends Controller
         $perPage = request()->validate($rules);
         return isset($perPage['per_page']) ? (int) $perPage['per_page'] : 5;
     }
-}
 
+
+
+}

@@ -9,6 +9,7 @@ use App\Models\UserIglesia;
 use App\Models\UserMisionAsociacion;
 use App\Models\UserUnion;
 use Illuminate\Support\Facades\DB;
+use App\Models\Nivel;
 
 class NivelData
 {
@@ -22,5 +23,17 @@ class NivelData
             ->get();
 
         return $gradoss;
+    }
+
+    public static function getNivel($grado_id)
+    {
+        $niveles = DB::table('nivel')
+            ->select('*')
+           
+            ->where('nivel.id', '=', $grado_id)
+            ->orderBy('nivel.id')
+            ->get()->first();
+       
+        return $niveles;
     }
 }
