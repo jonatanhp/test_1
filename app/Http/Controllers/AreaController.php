@@ -7,6 +7,8 @@ use App\Models\Area;
 use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\Area as AreaResource;
+use Exception;
+use App\Http\Data\AreaData;
 
 
 class AreaController extends BaseController
@@ -105,5 +107,16 @@ class AreaController extends BaseController
         $area->delete();
    
         return $this->sendResponse([], 'Area deleted successfully.');
+    }
+
+    public function getCursos(Request $request, $area_id)
+    {
+        $jResponse = [];
+        try{
+            $jResponse = AreaData::getCursos($area_id);
+        }catch(Exception $e){
+           return $this->errorResponse($e->getMessage(), 400);
+        }
+        return $this->sendResponse($jResponse, 201);
     }
 }

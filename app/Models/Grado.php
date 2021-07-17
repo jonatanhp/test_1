@@ -15,6 +15,8 @@ class Grado extends Model
         'nivel_id'
     ];
 
+    
+
     protected $table='grado';
 
     public function nivel(){

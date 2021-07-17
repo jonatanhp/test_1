@@ -42,6 +42,7 @@ Route::middleware('auth:api')->group( function () {
     Route::resource('alumnos', AlumnoController::class);
     Route::resource('alumno_cargas', AlumnoCargaAcadController::class);
     Route::resource('areas', AreaController::class);
+    Route::get('areas/{id}/cursos', [AreaController::class, 'getCursos']);
     Route::resource('cobranzas', CobranzaController::class);
     Route::resource('matriculas', ContratoMatriculaController::class);
     Route::resource('cro_pagos', CronogramaPagosController::class);

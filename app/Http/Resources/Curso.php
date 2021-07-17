@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
    
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\DB;
    
 class Curso extends JsonResource
 {
@@ -23,6 +24,7 @@ class Curso extends JsonResource
             'num_horas_np' => $this->num_horas_np,
             'estado_curso' => $this->estado_curso,
             'area_id' => $this->area_id,
+            'area_name' =>(DB::table('area')->select('nom_area')->where('area.id','=', $this->area_id)->take(1)->get()->first()),
             
         ];
     }

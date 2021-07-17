@@ -15,10 +15,14 @@ class Curso extends Model
         'nota_max',
         'num_horas_p',
         'num_horas_np',
-        'estado_curso'
+        'estado_curso',
+        'area_id'
     ];
 
+
+
     protected $table='curso';
+    public $timestamps = false;
 
     public function area(){
         return $this->belongsTo('App\Models\Area');

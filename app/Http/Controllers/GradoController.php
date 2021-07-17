@@ -120,7 +120,7 @@ class GradoController extends BaseController
         $validator = Validator::make($input, [
             'nom_grado' => 'required',
             'desc_grado' => 'required',
-            'nivel_id1' => 'required'
+            'nivel_id' => 'required'
         ]);
    
         if($validator->fails()){
@@ -129,7 +129,7 @@ class GradoController extends BaseController
    
         $grado->nom_grado = $input['nom_grado'];
         $grado->desc_grado = $input['desc_grado'];
-        $grado->nivel_id1 = $input['nivel_id1'];
+        $grado->nivel_id = $input['nivel_id'];
         $grado->save();
    
         return $this->sendResponse(new GradoResource($grado), 'Grado updated successfully.');
