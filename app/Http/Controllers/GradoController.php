@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\Grado as GradoResource;
 use App\Http\Resources\Nivel as NivelResource;
 use App\Http\Data\NivelData;
+use App\Http\Data\GradoData;
 use Exception;
 
 class GradoController extends BaseController
@@ -162,6 +163,17 @@ class GradoController extends BaseController
         }
         return $this->sendResponse($jResponse, 201);
         //return $this->sendResponse(new NivelResource($nivel3), 'Grado updated successfully.');
+    }
+
+    public function getSecciones(Request $request, $grado_id)
+    {
+        $jResponse = [];
+        //try{
+            $jResponse = GradoData::getSecciones($grado_id);
+        //}catch(Exception $e){
+           //return $this->errorResponse($e->getMessage(), 400);
+        //}
+        return $this->sendResponse($jResponse, 201);
     }
     
 

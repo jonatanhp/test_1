@@ -3,9 +3,8 @@
 namespace App\Http\Resources;
    
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Models\Docente as docenteR;
    
-class Docente extends JsonResource
+class User extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,13 +16,17 @@ class Docente extends JsonResource
     {
         return [
             'id' => $this->id,
-            'cod_docente' => $this->cod_docente,
-            'user_id' => $this->user_id,
-            'complete' => docenteR::join("users", "users.id", "=", "docente.user_id")
-            //->join("nivel", "users.nivel_id", "=", "nivel.id")
-            ->where("users.id", "=", $this->user_id)
-            ->select("sexo", "name", "ap_pat","ap_mat")
-            ->get()->first(),
+            'name' => $this->name,
+            'ap_pat' => $this->ap_pat,
+            'ap_mat' => $this->ap_mat,
+            'dni' => $this->dni,
+            'email' => $this->email,
+            'sexo' => $this->sexo,
+            'fecha_nac'=> $this->fecha_nac,
+            'telefono' => $this->telefono,
+            'ubigeo_id' => $this->ubigeo_id,
+            'email' => $this->email,
+
             'created_at' => $this->created_at->format('d/m/Y'),
             'updated_at' => $this->updated_at->format('d/m/Y'),
         ];

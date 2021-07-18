@@ -30,6 +30,8 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected $table='users';
+
     public function ubigeo(){
         return $this->belongsTo('App\Models\Ubigeo');
     }

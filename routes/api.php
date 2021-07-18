@@ -23,6 +23,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\RolUserController;
 use App\Http\Controllers\UbigeoController;
 use App\Http\Controllers\SeccionController;
+//use App\Http\Controllers\Prueba\pruebaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +38,17 @@ use App\Http\Controllers\SeccionController;
 
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [RegisterController::class, 'login']);
+
+
+
+
+Route::namespace('')->group(function () {
+    Route::resource('pruebas', NivelController::class);
+});
      
 Route::middleware('auth:api')->group( function () {
+    Route::get('users', [RegisterController::class, 'listUser']);
+    Route::get('users/{id}/list', [RegisterController::class, 'showU']);
     Route::resource('alumnos', AlumnoController::class);
     Route::resource('alumno_cargas', AlumnoCargaAcadController::class);
     Route::resource('areas', AreaController::class);
@@ -52,6 +62,7 @@ Route::middleware('auth:api')->group( function () {
     Route::resource('docentes', DocenteController::class);
     Route::resource('grados', GradoController::class);
     Route::get('grados/{id}/nivel', [GradoController::class, 'getNivel']);
+    Route::get('grados/{id}/secciones', [GradoController::class, 'getSecciones']);
     Route::resource('niveles', NivelController::class);
     Route::get('niveles/{id}/grados', [NivelController::class, 'getGrados']);
     Route::resource('periodos', PeriodoController::class);
