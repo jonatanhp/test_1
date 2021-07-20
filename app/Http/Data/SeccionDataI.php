@@ -43,6 +43,22 @@ class SeccionDataI extends JsonResource
         ->get();
         return $secciones;
     }
+
+
+    public static function getCargas($seccion_id){
+
+        $cargas = DB::table('curso_docente_seccion')
+            ->select('curso_docente_seccion.id','curso_docente_seccion.curso_id','curso_docente_seccion.seccion_id','curso_docente_seccion.docente_id',
+            'curso_docente_seccion.created_at','curso_docente_seccion.updated_at',
+             'curso_docente_seccion.fecha_inicio','curso_docente_seccion.fecha_fin', 'seccion_id')
+           
+            ->where('curso_docente_seccion.seccion_id', '=', $seccion_id)
+            ->orderBy('curso_docente_seccion.id')
+            ->get();
+
+        return $cargas;
+
+    }
 }
 
 /*DB::table('users')

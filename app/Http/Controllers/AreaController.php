@@ -44,7 +44,7 @@ class AreaController extends BaseController
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors());       
         }
-   
+        
         $area = Area::create($input);
    
         return $this->sendResponse(new AreaResource($area), 'Area created successfully.');

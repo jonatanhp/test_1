@@ -4,12 +4,9 @@
 namespace App\Http\Data;
 
 
-use App\Models\UserDistritoMisionero;
-use App\Models\UserIglesia;
-use App\Models\UserMisionAsociacion;
-use App\Models\UserUnion;
+
 use Illuminate\Support\Facades\DB;
-use App\Models\Nivel;
+
 
 class NivelData
 {

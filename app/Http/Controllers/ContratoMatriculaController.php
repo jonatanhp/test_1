@@ -7,7 +7,8 @@ use App\Models\Contrato_Matricula;
 use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\Contrato_Matricula as Contrato_MatriculaResource;
-
+use App\Models\User;
+use App\Http\Resources\User as UserResource;
 
 class ContratoMatriculaController extends BaseController
 {
@@ -114,4 +115,19 @@ class ContratoMatriculaController extends BaseController
    
         return $this->sendResponse([], 'Contrato_Matricula deleted successfully.');
     }
+
+
+    public function actualizarEstado($id){
+        
+        $user = User::find($id);
+        dd($user);
+        $newestado="0";
+        if($user->estado=="0") $newestado="1";
+
+        $user->estado = $newestado;
+        $user->save();
+   
+        return $this->sendResponse(new UserResource($user), 'user updated successfully.');
+
+    }    
 }

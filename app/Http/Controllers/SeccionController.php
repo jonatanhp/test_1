@@ -14,7 +14,9 @@ use App\Http\Data\SeccionDataI;
 use Exception;
 //use App\Traits\ApiResponser as responser;
 use App\Traits\ResponserTest as responsertest;
+use App\Http\Resources\Curso_Docente_Seccion as cdcR;
 //use Illuminate\Database\Eloquent\Collection;
+
 
 class SeccionController extends BaseController
 {
@@ -141,5 +143,18 @@ class SeccionController extends BaseController
         return $this->sendResponse($jResponse,201);
         //return responser.showAll($jResponse, 201);
         //return $ff;
+    }
+
+
+
+    public function getContratos(Request $request, $seccion_id)
+    {
+        $jResponse = [];
+        //try{
+            $jResponse = SeccionDataI::getCargas($seccion_id);
+        //}catch(Exception $e){
+         //  return $this->errorResponse($e->getMessage(), 400);
+      //  }
+        return $this->sendResponse(cdcR::collection($jResponse), 'Contrato_Matriculas retrieved successfully.');
     }
 }

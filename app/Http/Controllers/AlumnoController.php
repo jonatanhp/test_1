@@ -7,6 +7,9 @@ use App\Models\Alumno;
 use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\Alumno as AlumnoResource;
+use App\Http\Data\AlumnoData;
+use Exception;
+use App\Http\Resources\Contrato_Matricula as Contrato_MatriculaResource;
 
 class AlumnoController extends BaseController
 {
@@ -105,5 +108,16 @@ class AlumnoController extends BaseController
         $alumno->delete();
    
         return $this->sendResponse([], 'Alumno deleted successfully.');
+    }
+
+    public function getContratos(Request $request, $alumno_id)
+    {
+        $jResponse = [];
+        try{
+            $jResponse = AlumnoData::getContratos($alumno_id);
+        }catch(Exception $e){
+           return $this->errorResponse($e->getMessage(), 400);
+        }
+        return $this->sendResponse(Contrato_MatriculaResource::collection($jResponse), 'Contrato_Matriculas retrieved successfully.');
     }
 }

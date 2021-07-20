@@ -50,6 +50,7 @@ Route::middleware('auth:api')->group( function () {
     Route::get('users', [RegisterController::class, 'listUser']);
     Route::get('users/{id}/list', [RegisterController::class, 'showU']);
     Route::resource('alumnos', AlumnoController::class);
+    Route::get('alumnos/{id}/contratos', [AlumnoController::class, 'getContratos']);
     Route::resource('alumno_cargas', AlumnoCargaAcadController::class);
     Route::resource('areas', AreaController::class);
     Route::get('areas/{id}/cursos', [AreaController::class, 'getCursos']);
@@ -71,6 +72,7 @@ Route::middleware('auth:api')->group( function () {
     Route::resource('roles', RolController::class);
     Route::resource('rol_users', RolUserController::class);
     Route::resource('secciones', SeccionController::class);
+    Route::get('secciones/{id}/cargas', [SeccionController::class, 'getContratos']);
     Route::get('secciones/{id}/grado&nivel', [SeccionController::class, 'getGradoandNivel']);
     Route::resource('ubigeos', UbigeoController::class);
     

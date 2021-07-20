@@ -20,20 +20,10 @@ class AreaData
            
             ->where('curso.area_id', '=', $area_id)
             ->orderBy('curso.id')
-            ->get()->first();
+            ->get();
 
         return $cursoss;
     }
 
-    public static function getArea($curso_id)
-    {
-        $niveles = DB::table('nivel')
-            ->select('*')
-           
-            ->where('nivel.id', '=', $curso_id)
-            ->orderBy('nivel.id')
-            ->get()->first();
-       
-        return $niveles;
-    }
+    
 }
