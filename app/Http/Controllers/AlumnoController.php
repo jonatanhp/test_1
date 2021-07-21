@@ -10,6 +10,7 @@ use App\Http\Resources\Alumno as AlumnoResource;
 use App\Http\Data\AlumnoData;
 use Exception;
 use App\Http\Resources\Contrato_Matricula as Contrato_MatriculaResource;
+use App\Http\Resources\Alumno_Carga_Acad as CargaAlumnoResource;
 
 class AlumnoController extends BaseController
 {
@@ -119,5 +120,16 @@ class AlumnoController extends BaseController
            return $this->errorResponse($e->getMessage(), 400);
         }
         return $this->sendResponse(Contrato_MatriculaResource::collection($jResponse), 'Contrato_Matriculas retrieved successfully.');
+    }
+
+    public function getCargasOfAlumno(Request $request, $alumno_id)
+    {
+        $jResponse = [];
+        try{
+            $jResponse = AlumnoData::getCargasOfAlumno($alumno_id);
+        }catch(Exception $e){
+           return $this->errorResponse($e->getMessage(), 400);
+        }
+        return $this->sendResponse(CargaAlumnoResource::collection($jResponse), 'Contrato_Matriculas retrieved successfully.');
     }
 }

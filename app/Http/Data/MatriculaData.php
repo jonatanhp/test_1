@@ -58,4 +58,16 @@ class MatriculaData
        
         return $niveles;
     }
+
+    public static function getCargasOfContrato($alumno_id)
+    {
+        $contratos = DB::table('alumno_carga_acad')
+            ->select("id", "curso_docente_seccion_id", "contrato_matricula_id", "alumno_id","created_at","updated_at")
+           
+            ->where('alumno_carga_acad.alumno_id', '=', $alumno_id)
+            ->orderBy('alumno_carga_acad.id')
+            ->get();
+
+        return $contratos;
+    }
 }

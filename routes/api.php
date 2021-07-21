@@ -51,6 +51,8 @@ Route::middleware('auth:api')->group( function () {
     Route::get('users/{id}/list', [RegisterController::class, 'showU']);
     Route::resource('alumnos', AlumnoController::class);
     Route::get('alumnos/{id}/contratos', [AlumnoController::class, 'getContratos']);
+    Route::get('alumnos/{id}/cargas', [AlumnoController::class, 'getCargasOfAlumno']);
+    
     Route::resource('alumno_cargas', AlumnoCargaAcadController::class);
     Route::resource('areas', AreaController::class);
     Route::get('areas/{id}/cursos', [AreaController::class, 'getCursos']);

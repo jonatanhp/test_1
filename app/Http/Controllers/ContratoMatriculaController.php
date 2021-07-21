@@ -34,8 +34,8 @@ class ContratoMatriculaController extends BaseController
         $input = $request->all();
    
         $validator = Validator::make($input, [
-            'cod_matricula' => 'required',
-            'confirmacion' => 'required',
+            'cod_matricula' ,
+            'confirmacion' ,
             'periodo_id' => 'required',
             'alumno_id' => 'required',
             'representante_id' => 'required'
